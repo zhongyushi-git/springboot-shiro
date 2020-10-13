@@ -4,6 +4,13 @@ $(function() {
     $("input[name='username']").val("admin")
     $("input[name='password']").val("1234")
 
+    //回车事件监听
+    $("input[name='password']").keydown(function(e) {
+        if (e.keyCode == 13) {
+            $('#loginForm').submit();
+        }
+    });
+
     layui.use(['form'], function() {
         const form = layui.form;
         //自定义表单验证规则
@@ -46,5 +53,3 @@ $(function() {
 
 
 });
-
-

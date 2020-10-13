@@ -1,5 +1,7 @@
 package com.zys.springbootshiro.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zys.springbootshiro.entity.Permissions;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
 public interface PermissionsService {
     List<Permissions> getListByRoleId(String id);
 
-    List<Permissions> getList();
+    IPage<Permissions> getList(String name, String code, Integer page, Integer limit);
 
+    int addData(Permissions permissions);
 }

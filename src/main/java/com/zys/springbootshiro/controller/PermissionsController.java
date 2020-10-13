@@ -1,12 +1,11 @@
 package com.zys.springbootshiro.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zys.springbootshiro.entity.Permissions;
 import com.zys.springbootshiro.service.PermissionsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,12 +23,21 @@ public class PermissionsController {
 
     @GetMapping("/list")
     public JSONObject getList(String name,String code,Integer page,Integer limit){
-        List<Permissions> list = permissionsService.getList();
+        IPage<Permissions> pages = permissionsService.getList(name,code,page,limit);
         JSONObject json=new JSONObject();
-        json.put("data",list);
+        json.put("data",pages.getRecords());
         json.put("status",true);
         json.put("code",0);
-        json.put("count",3);
+        json.put("count",pages.getTotal());
+        return json;
+    }
+
+    @PostMapping("/add")
+    public JSONObject addData(@RequestBody Permissions permissions){
+        int count=permissionsService.addData(permissions);
+        JSONObject json=new JSONObject();
+        json.put("msg","添加成功");
+        json.put("status",true);
         return json;
     }
 }
