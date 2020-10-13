@@ -1,0 +1,35 @@
+body {
+    background-color: #3290e8;
+    background-image: linear-gradient(#3290e8, #4d9eed, #409ae8);
+}
+
+.container {
+    width: 360px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -180px;
+    color: white;
+}
+
+.center {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.form-container {
+    margin: 20px;
+}
+
+#submitBtn {
+    width: 100%;
+}
+
+#errMsg {
+    color: red;
+    font-size: 12px;
+}

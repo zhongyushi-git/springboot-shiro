@@ -1,0 +1,22 @@
+#数据源配置
+spring:
+  datasource:
+    #使用阿里巴巴的druid
+    type: com.alibaba.druid.pool.DruidDataSource
+    #配置数据库的路径和用户名密码
+    url: jdbc:mysql://127.0.0.1:3306/shiro?useUnicode=true&characterEncoding=UTF-8&serverTimezone=CTT&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true
+    username: root
+    password: zys123456
+
+
+mybatis-plus:
+  configuration:
+    #开启日志打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #开启缓存
+    #    cache-enabled: true
+  mapper-locations: classpath*:mapper/*Mapper.xml
+
+
+
+

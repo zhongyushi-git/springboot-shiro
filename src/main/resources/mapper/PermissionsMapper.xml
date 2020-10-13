@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zys.springbootshiro.dao.PermissionsDao">
+
+
+    <select id="getListByRoleId" resultType="com.zys.springbootshiro.entity.Permissions">
+        select t1.* from permissions t1,role_permissions t2 where t1.id=t2.permissions_id and t2.role_id=#{roleId}
+    </select>
+</mapper>

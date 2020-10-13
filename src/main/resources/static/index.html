@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>shiro首页</title>
+    <link rel="stylesheet" href="lib/layui/dist/css/layui.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/layui/dist/layui.js"></script>
+    <script src="lib/request.js"></script>
+    <script src="js/index.js"></script>
+</head>
+
+<body>
+    <div>
+        <div class="layui-col-md12 top">
+            <div class="layui-row">
+                <div class="layui-col-md10">
+                    <h2>Shiro后台管理系统</h2>
+                </div>
+                <div class="layui-col-md2">
+                    <span id="username">admin</span>
+                    <span><button id="exitBtn" class="layui-btn">退出系统</button></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md2 left">
+                <ul>
+                    <li><a href="javascript:void(0)" onclick="changeHtml('permission.html')">权限管理</a></li>
+                    <li><a href="javascript:void(0)">角色管理</a></li>
+                    <li><a href="javascript:void(0)">用户管理</a></li>
+                </ul>
+            </div>
+            <div class="layui-col-md10 content">
+                <div class="iframe-div">
+                    <iframe id="iframe" src="html/permission.html" frameborder="0" ></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

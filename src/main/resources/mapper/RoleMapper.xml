@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zys.springbootshiro.dao.RoleDao">
+
+    <select id="getListByUserId" resultType="com.zys.springbootshiro.entity.Role">
+        select t1.* from role t1,user_role t2 where t1.id=t2.role_id and t2.user_id=#{userId}
+    </select>
+</mapper>
