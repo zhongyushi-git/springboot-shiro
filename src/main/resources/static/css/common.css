@@ -1,0 +1,22 @@
+/* 公共的样式 */
+
+.container {
+    margin: 10px;
+    text-align: center;
+}
+
+table {
+    text-align: center;
+}
+
+.layui-input,
+.layui-select,
+.layui-textarea {
+    margin-top: 5px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.layui-btn {
+    margin-top: 5px;
+}

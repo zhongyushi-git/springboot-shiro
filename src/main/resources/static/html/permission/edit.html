@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>权限管理</title>
+    <link rel="stylesheet" href="../../lib/layui/dist/css/layui.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <script src="../../lib/jquery/jquery.min.js"></script>
+    <script src="../../lib/layui/dist/layui.js"></script>
+    <script src="../../lib/request.js"></script>
+    <style>
+        .div-label {
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="layui-form" id="dataForm">
+            <div class="layui-row">
+                <div class="layui-inline">
+                    <label class="layui-form-label">权限名称:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="permissionsName" placeholder="请输入权限名称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">权限编码:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="permissionsCode" placeholder="请输入权限编码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div>
+                    <button id="submitBtn" class="layui-btn layui-btn-normal layui-btn-sm" lay-filter="formDemo" lay-submit>保 存</button>
+                    <button class="layui-btn layui-btn-primary layui-btn-sm">取 消</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+        let layer, laydate, form;
+        //获取父级数据
+        var parentData = window.parent.parentData
+        $(function() {
+            layui.use(['layer', 'form'], function() {
+                layer = layui.layer;
+                form = layui.form;
+
+                layui.use(['form'], function() {
+                    //自定义表单验证规则
+                    form.verify({
+                        permissionName: function(value) {
+                            if (value == null || value == "") {
+                                return '权限名称不能为空';
+                            }
+                        },
+                        permissionCode: function(value) {
+                            if (value == null || value == "") {
+                                return '权限编码不能为空';
+                            }
+                        }
+
+
+                    });
+                    //监听表单提交
+                    form.on('submit(formDemo)', function(data) {
+                        postJson("/api/permission/add", data.field, function(data) {
+                                if (data.status) {
+                                    layer.alert("添加成功", function(i) {
+                                        //关闭父级弹框
+                                        parent.layer.close(parentData.index);
+                                        layer.close(i)
+                                        window.parent.reloadTable()
+                                    });
+                                } else {
+                                    layer.alert(data.msg)
+                                }
+                            })
+                            //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                        return false;
+                    });
+
+                    $("#close").click(function() {
+                        parent.layer.close(parentData.index)
+                    })
+                });
+            })
+
+        })
+    </script>
+
+</body>
+
+</html>
