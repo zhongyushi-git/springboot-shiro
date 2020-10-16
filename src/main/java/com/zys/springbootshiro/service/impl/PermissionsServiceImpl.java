@@ -9,8 +9,8 @@ import com.zys.springbootshiro.dao.PermissionsDao;
 import com.zys.springbootshiro.entity.Permissions;
 import com.zys.springbootshiro.service.PermissionsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -45,7 +45,38 @@ public class PermissionsServiceImpl implements PermissionsService {
     }
 
     @Override
-    public int addData(Permissions permissions) {
-        return permissionsDao.insert(permissions);
+    public JSONObject saveData(Permissions permissions) {
+        JSONObject json = new JSONObject();
+
+        try {
+            if (permissions.getId() == null) {
+                permissionsDao.insert(permissions);
+            } else {
+                permissionsDao.updateById(permissions);
+            }
+            json.put("msg", "保存成功");
+            json.put("status", true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            json.put("status", false);
+            //捕获唯一性约束异常
+            if (e instanceof DuplicateKeyException) {
+                json.put("msg", "权限编码已存在，请重新输入");
+            } else {
+                json.put("msg", "保存失败");
+            }
+        }
+        return json;
+
+    }
+
+    @Override
+    public Permissions getById(Integer id) {
+        return permissionsDao.selectById(id);
+    }
+
+    @Override
+    public int deleteById(Integer id) {
+        return permissionsDao.delById(id);
     }
 }

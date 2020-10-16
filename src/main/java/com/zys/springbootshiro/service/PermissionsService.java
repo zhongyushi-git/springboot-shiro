@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zys.springbootshiro.entity.Permissions;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 /**
@@ -16,5 +17,9 @@ public interface PermissionsService {
 
     IPage<Permissions> getList(String name, String code, Integer page, Integer limit);
 
-    int addData(Permissions permissions);
+    JSONObject saveData(Permissions permissions);
+
+    Permissions getById(Integer id);
+
+    int deleteById(Integer id);
 }

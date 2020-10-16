@@ -8,13 +8,13 @@ function get(url, data, callback, async = true) {
         type: 'get',
         data,
         //成功的回调
-        success(res) {
+        success(res, textStatus, xhr) {
             callback(res)
         },
         //失败的回调
         error() {
             console.log("发送请求时出现错误！")
-        }
+        },
     })
 }
 //post请求，默认方法

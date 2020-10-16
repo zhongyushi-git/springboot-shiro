@@ -13,4 +13,6 @@ import java.util.List;
  */
 public interface PermissionsDao extends BaseMapper<Permissions> {
     List<Permissions> getListByRoleId(@Param("roleId") String roleId);
+
+    int delById(Integer id);
 }

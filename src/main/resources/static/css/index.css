@@ -42,8 +42,8 @@
 }
 
 .iframe-div{
-    height: calc(100vh - 11.1vh);
-    overflow-y: auto;
+    height: calc(100vh - 11.2vh);
+    overflow-y: hidden;
 }
 
 #iframe {
